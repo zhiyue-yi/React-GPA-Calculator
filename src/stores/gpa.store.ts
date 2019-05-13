@@ -6,8 +6,8 @@ import gradeSettingStore from './grade-settings.store';
 export class GpaStore {
   @observable semesters: ISemester[] = [];
 
-  @action addSemester = (year: number, term: number) => {
-    const semester = { year, term, courses: [] };
+  @action addSemester = (name: string) => {
+    const semester = { name, courses: [] };
     const semesters = [...this.semesters];
     semesters.push(semester);
     this.semesters = semesters;
@@ -21,7 +21,10 @@ export class GpaStore {
   };
 
   @action addCourse = (semester: ISemester, course: ICourse) => {
-    const index = this.semesters.indexOf(semester);
+    const index = this.semesters.findIndex(s => s.name === semester.name);
+
+    if (index === -1) return;
+
     const semesters = [...this.semesters];
     semesters[index].courses.push(course);
     this.semesters = semesters;
@@ -32,6 +35,10 @@ export class GpaStore {
     const courseIndex = this.semesters[semesterIndex].courses.indexOf(course);
     const semesters = [...this.semesters];
     semesters[semesterIndex].courses.splice(courseIndex, 1);
+    this.semesters = semesters;
+  };
+
+  @action import = (semesters: ISemester[]) => {
     this.semesters = semesters;
   };
 
@@ -55,8 +62,8 @@ export class GpaStore {
   getGpa(semester: ISemester) {
     const points = this.getTotalPoints(semester);
     const credits = this.getTotalCredits(semester);
-    const gpa = points / credits;
-    return Math.round(gpa * 100) / 100;
+    const gpa = Math.round((points / credits) * 100) / 100;
+    return gpa.toString() === 'NaN' ? 0 : gpa;
   }
 
   @computed get cgpa() {
@@ -70,7 +77,8 @@ export class GpaStore {
       0,
     );
     const cgpa = Math.round((totalPoints / totalCredits) * 100) / 100;
-    return cgpa;
+
+    return cgpa.toString() === 'NaN' ? 0 : cgpa;
   }
 
   @computed get count() {
@@ -79,8 +87,8 @@ export class GpaStore {
 }
 
 const gpaStore = new GpaStore();
-gpaStore.addSemester(2018, 1);
-gpaStore.addSemester(2019, 2);
+gpaStore.addSemester('2016 Aug - Dec');
+gpaStore.addSemester('2017 Jan - May');
 
 const semester1 = gpaStore.semesters[0];
 gpaStore.addCourse(semester1, {

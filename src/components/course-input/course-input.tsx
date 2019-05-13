@@ -37,9 +37,16 @@ class CourseInput extends React.Component<CourseInputProps, CourseInputState> {
     );
   };
 
-  formatSemester(semester: ISemester) {
-    return `${semester.year}${semester.term}`;
-  }
+  handleSemesterChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const selectedSemester = this.props.gpaStore!.semesters.find(
+      s => s.name === e.target.value,
+    );
+    if (selectedSemester) {
+      this.setState({
+        selectedSemester,
+      });
+    }
+  };
 
   render() {
     return (
@@ -65,16 +72,21 @@ class CourseInput extends React.Component<CourseInputProps, CourseInputState> {
           <div className="col-5">
             <select
               className="form-control"
-              defaultValue={this.formatSemester(this.state.selectedSemester)}
+              defaultValue={this.state.selectedSemester.name}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                this.handleSemesterChange(e)
+              }
             >
               <option>Select a semester</option>
               {this.props.gpaStore!.semesters.map(semester => (
                 <option
-                  key={semester.year + semester.term}
-                  onSelect={() => this.setState({ selectedSemester: semester })}
-                  value={this.formatSemester(semester)}
+                  key={semester.name}
+                  value={semester.name}
+                  defaultChecked={
+                    semester.name === this.state.selectedSemester.name
+                  }
                 >
-                  Year {semester.year} Term {semester.term}
+                  {semester.name}
                 </option>
               ))}
             </select>
@@ -119,7 +131,7 @@ class CourseInput extends React.Component<CourseInputProps, CourseInputState> {
         <div className="form-row mt-2">
           <div className="col">
             <button type="submit" className="btn btn-success w-100">
-              Add
+              Add Course
             </button>
           </div>
         </div>

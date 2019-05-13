@@ -19,7 +19,7 @@ class SemesterGroup extends React.Component<
     return (
       <div className="row">
         {this.props.gpaStore!.semesters.map(semester => (
-          <Semester semester={semester} key={semester.year + semester.term} />
+          <Semester semester={semester} key={semester.name} />
         ))}
       </div>
     );

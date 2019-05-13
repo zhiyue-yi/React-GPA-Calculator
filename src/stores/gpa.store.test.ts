@@ -3,29 +3,29 @@ import { GpaStore } from './gpa.store';
 describe('GPA Store', () => {
   it('adds new semester', () => {
     const store = new GpaStore();
-    store.addSemester(2018, 1);
-    store.addSemester(2019, 2);
+    store.addSemester('2016 Aug - Dec');
+    store.addSemester('2017 Jan - May');
 
     expect(store.semesters.length).toBe(2);
-    expect(store.semesters[1].year).toBe(2019);
+    expect(store.semesters[1].name).toBe('2017 Jan - May');
   });
 
   it('removes a semester', () => {
     const store = new GpaStore();
-    store.addSemester(2018, 1);
-    store.addSemester(2019, 2);
+    store.addSemester('2016 Aug - Dec');
+    store.addSemester('2017 Jan - May');
 
     const semesterToRemove = store.semesters[0];
     store.removeSemester(semesterToRemove);
 
     expect(store.semesters.length).toBe(1);
-    expect(store.semesters[0].year).toBe(2019);
+    expect(store.semesters[0].name).toBe('2017 Jan - May');
   });
 
   it('adds new course', () => {
     const store = new GpaStore();
-    store.addSemester(2018, 1);
-    store.addSemester(2019, 2);
+    store.addSemester('2016 Aug - Dec');
+    store.addSemester('2017 Jan - May');
 
     const semester = store.semesters[0];
     store.addCourse(semester, {
@@ -45,8 +45,8 @@ describe('GPA Store', () => {
 
   it('removes a course', () => {
     const store = new GpaStore();
-    store.addSemester(2018, 1);
-    store.addSemester(2019, 2);
+    store.addSemester('2016 Aug - Dec');
+    store.addSemester('2017 Jan - May');
 
     const semester = store.semesters[0];
     store.addCourse(semester, {
@@ -71,8 +71,8 @@ describe('GPA Store', () => {
 
 describe('GPA calculation', () => {
   const store = new GpaStore();
-  store.addSemester(2018, 1);
-  store.addSemester(2019, 2);
+  store.addSemester('2016 Aug - Dec');
+  store.addSemester('2017 Jan - May');
 
   const semester1 = store.semesters[0];
   store.addCourse(semester1, {
