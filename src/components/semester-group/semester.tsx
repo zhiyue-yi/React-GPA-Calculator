@@ -18,7 +18,7 @@ export interface SemesterState {
 class Semester extends React.Component<SemesterProps, SemesterState> {
   render() {
     return (
-      <div className="col-12 col-md-4 mt-2" style={{ color: 'black' }}>
+      <div className="col-12 col-lg-6 mt-2" style={{ color: 'black' }}>
         <div className="card">
           <div className="card-body">
             <h5 className="card-title d-flex justify-content-between align-items-center">
