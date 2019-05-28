@@ -2,6 +2,7 @@ import { observable, action, computed } from 'mobx';
 import { ISemester } from '../interfaces/semester.interface';
 import { ICourse } from '../interfaces/course.interface';
 import gradeSettingStore from './grade-settings.store';
+import gpaData from './../data/GPA.json';
 
 export class GpaStore {
   @observable semesters: ISemester[] = [];
@@ -87,37 +88,6 @@ export class GpaStore {
 }
 
 const gpaStore = new GpaStore();
-gpaStore.addSemester('2016 Aug - Dec');
-gpaStore.addSemester('2017 Jan - May');
-
-const semester1 = gpaStore.semesters[0];
-gpaStore.addCourse(semester1, {
-  name: 'Introduction to Computational Thinking',
-  credit: 3,
-  grade: 'A',
-});
-gpaStore.addCourse(semester1, {
-  name: 'Software Engineering',
-  credit: 3,
-  grade: 'B+',
-});
-gpaStore.addCourse(semester1, {
-  name: 'Operating System',
-  credit: 4,
-  grade: 'A-',
-});
-
-const semester2 = gpaStore.semesters[1];
-gpaStore.addCourse(semester2, {
-  name: 'Engineer and Society',
-  credit: 3,
-  grade: 'A-',
-});
-gpaStore.addCourse(semester2, { name: 'Algorithm', credit: 3, grade: 'B+' });
-gpaStore.addCourse(semester2, {
-  name: 'Communication Skills',
-  credit: 2,
-  grade: 'A-',
-});
+gpaStore.import(gpaData);
 
 export default gpaStore;
