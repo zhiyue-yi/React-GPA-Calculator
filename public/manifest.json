@@ -1,6 +1,6 @@
 {
-  "short_name": "GPA Calculator",
-  "name": "GPA Calculator",
+  "short_name": "gpa-calculator",
+  "name": "gpa-calculator",
   "icons": [{
     "src": "favicon.ico",
     "sizes": "32x32 16x16",
