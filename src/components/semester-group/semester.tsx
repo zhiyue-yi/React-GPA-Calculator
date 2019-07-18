@@ -45,7 +45,7 @@ class Semester extends React.Component<SemesterProps, SemesterState> {
                   key={course.name}
                   className="list-group-item d-flex justify-content-between align-items-center"
                 >
-                  <span>
+                  <span style={{ flex: 1 }}>
                     <span
                       className="badge badge-primary badge-pill mr-2"
                       style={{ minWidth: '30px' }}
@@ -54,7 +54,7 @@ class Semester extends React.Component<SemesterProps, SemesterState> {
                     </span>
                     {course.name}
                   </span>
-                  <span>
+                  <span style={{ flexBasis: '72px' }}>
                     <span className="badge badge-pill mr-1">
                       {course.credit} CU
                     </span>

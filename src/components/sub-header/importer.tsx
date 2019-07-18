@@ -24,7 +24,9 @@ class Importer extends React.Component<ImporterProps, ImporterState> {
 
   importJSON = (event: any) => {
     const target = event.target as FileReader;
-    this.props.gpaStore!.import(JSON.parse(target.result as string) as ISemester[]);
+    this.props.gpaStore!.import(JSON.parse(
+      target.result as string,
+    ) as ISemester[]);
   };
 
   render() {
@@ -36,7 +38,7 @@ class Importer extends React.Component<ImporterProps, ImporterState> {
           display: 'inline',
         }}
       >
-        <button className="btn btn-primary btn-sm mr-2">
+        <button className="btn btn-primary btn-sm mb-2">
           <FontAwesomeIcon icon="upload" /> Import GPA from JSON
           <input
             type="file"

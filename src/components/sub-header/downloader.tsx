@@ -23,7 +23,7 @@ class Downloader extends React.Component<DownloaderProps, DownloaderState> {
   render() {
     return (
       <button
-        className="btn btn-primary btn-sm"
+        className="btn btn-primary btn-sm mb-2 ml-2"
         onClick={() => this.downloadJSON()}
       >
         <FontAwesomeIcon icon="download" /> Export as JSON

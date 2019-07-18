@@ -88,4 +88,19 @@
     "grade": "A",
     "credit": 3
   }]
+}, {
+  "name": "2019 Jan - May",
+  "courses": [{
+    "name": "Machine Learning",
+    "grade": "B",
+    "credit": 3
+  }, {
+    "name": "Artificial Intelligence",
+    "grade": "B+",
+    "credit": 3
+  }, {
+    "name": "Net Centric Computing",
+    "grade": "B+",
+    "credit": 3
+  }]
 }]
