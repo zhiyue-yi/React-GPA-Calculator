@@ -19,17 +19,17 @@ class Semester extends React.Component<SemesterProps, SemesterState> {
   render() {
     return (
       <div className="col-12 col-lg-6 mt-2" style={{ color: 'black' }}>
-        <div className="card">
+        <div className="semester card">
           <div className="card-body">
             <h5 className="card-title d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-between align-items-center">
                 {this.props.semester.name}
-                <span className="badge badge-warning ml-2">
+                <span className="semester__gpa badge badge-warning ml-2">
                   {this.props.gpaStore!.getGpa(this.props.semester)}
                 </span>
               </div>
               <span
-                className="text-danger mr-2"
+                className="semester__delete-button text-danger mr-2"
                 style={{ cursor: 'pointer' }}
                 onClick={() =>
                   this.props.gpaStore!.removeSemester(this.props.semester)
@@ -39,28 +39,28 @@ class Semester extends React.Component<SemesterProps, SemesterState> {
               </span>
             </h5>
 
-            <ul className="list-group">
+            <ul className="course-list list-group">
               {this.props.semester.courses.map(course => (
                 <li
                   key={course.name}
-                  className="list-group-item d-flex justify-content-between align-items-center"
+                  className="course list-group-item d-flex justify-content-between align-items-center"
                 >
                   <span>
                     <span
-                      className="badge badge-primary badge-pill mr-2"
+                      className="course__grade badge badge-primary badge-pill mr-2"
                       style={{ minWidth: '30px' }}
                     >
                       {course.grade}
                     </span>
-                    {course.name}
+                    <span className="course__name">{course.name}</span>
                   </span>
                   <span>
-                    <span className="badge badge-pill mr-1">
+                    <span className="course__credit-unit badge badge-pill mr-1">
                       {course.credit} CU
                     </span>
 
                     <span
-                      className="text-danger mr-2"
+                      className="course__delete-button text-danger mr-2"
                       style={{ cursor: 'pointer' }}
                       onClick={() =>
                         this.props.gpaStore!.removeCourse(

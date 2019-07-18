@@ -12,7 +12,7 @@ export interface CGPAState {}
 @observer
 class CGPA extends React.Component<CGPAProps, CGPAState> {
   render() {
-    return <h2 className="text-center">CGPA {this.props.gpaStore!.cgpa}</h2>;
+    return <h2 className="cgpa text-center">CGPA {this.props.gpaStore!.cgpa}</h2>;
   }
 }
 
