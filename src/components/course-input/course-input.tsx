@@ -50,12 +50,12 @@ class CourseInput extends React.Component<CourseInputProps, CourseInputState> {
 
   render() {
     return (
-      <form onSubmit={(e: FormEvent) => this.handleSubmit(e)}>
+      <form className="course-input" onSubmit={(e: FormEvent) => this.handleSubmit(e)}>
         <div className="form-row">
           <div className="col">
             <input
               type="text"
-              className="form-control"
+              className="course-input__name form-control"
               placeholder="Course Name"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 this.setState({
@@ -71,7 +71,7 @@ class CourseInput extends React.Component<CourseInputProps, CourseInputState> {
         <div className="form-row mt-2">
           <div className="col-5">
             <select
-              className="form-control"
+              className="course-input__semester form-control"
               defaultValue={this.state.selectedSemester.name}
               onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                 this.handleSemesterChange(e)
@@ -94,7 +94,7 @@ class CourseInput extends React.Component<CourseInputProps, CourseInputState> {
           <div className="col-4">
             <input
               type="text"
-              className="form-control"
+              className="course-input__credit-unit form-control"
               placeholder="Credit Units"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 this.setState({
@@ -108,7 +108,7 @@ class CourseInput extends React.Component<CourseInputProps, CourseInputState> {
           </div>
           <div className="col-3">
             <select
-              className="form-control"
+              className="course-input__grade form-control"
               value={this.state.course.grade}
               onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                 this.setState({
@@ -130,7 +130,7 @@ class CourseInput extends React.Component<CourseInputProps, CourseInputState> {
         </div>
         <div className="form-row mt-2">
           <div className="col">
-            <button type="submit" className="btn btn-success w-100">
+            <button type="submit" className="course-input__add-button btn btn-success w-100">
               Add Course
             </button>
           </div>
